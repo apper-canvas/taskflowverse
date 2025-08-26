@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "name": "Work",
+    "color": "#5B21B6",
+    "icon": "Briefcase"
+  },
+  {
+    "Id": 2,
+    "name": "Personal",
+    "color": "#10B981",
+    "icon": "User"
+  },
+  {
+    "Id": 3,
+    "name": "Urgent",
+    "color": "#EF4444",
+    "icon": "AlertTriangle"
+  }
+]

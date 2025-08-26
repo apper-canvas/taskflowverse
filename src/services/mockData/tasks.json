@@ -1,0 +1,90 @@
+[
+  {
+    "Id": 1,
+    "title": "Complete quarterly budget review",
+    "description": "Analyze Q3 expenses and prepare budget adjustments for Q4. Include department breakdowns and variance analysis.",
+    "completed": false,
+    "category": "Work",
+    "priority": "High",
+    "dueDate": "2024-01-15T10:00:00Z",
+    "createdAt": "2024-01-10T09:00:00Z",
+    "order": 1
+  },
+  {
+    "Id": 2,
+    "title": "Schedule dentist appointment",
+    "description": "Call Dr. Smith's office to schedule routine cleaning and checkup.",
+    "completed": true,
+    "category": "Personal",
+    "priority": "Medium",
+    "dueDate": "2024-01-12T14:00:00Z",
+    "createdAt": "2024-01-08T16:30:00Z",
+    "order": 2
+  },
+  {
+    "Id": 3,
+    "title": "Prepare presentation for board meeting",
+    "description": "Create comprehensive slides covering project progress, milestones, and next quarter objectives.",
+    "completed": false,
+    "category": "Urgent",
+    "priority": "High",
+    "dueDate": "2024-01-14T09:00:00Z",
+    "createdAt": "2024-01-09T11:15:00Z",
+    "order": 3
+  },
+  {
+    "Id": 4,
+    "title": "Buy groceries for dinner party",
+    "description": "Purchase ingredients for Saturday's dinner party: wine, appetizers, main course items, and dessert supplies.",
+    "completed": false,
+    "category": "Personal",
+    "priority": "Medium",
+    "dueDate": "2024-01-13T18:00:00Z",
+    "createdAt": "2024-01-10T12:45:00Z",
+    "order": 4
+  },
+  {
+    "Id": 5,
+    "title": "Review and approve marketing campaign",
+    "description": "Final review of Q1 marketing materials, social media strategy, and advertising budget allocation.",
+    "completed": false,
+    "category": "Work",
+    "priority": "High",
+    "dueDate": "2024-01-16T15:00:00Z",
+    "createdAt": "2024-01-11T10:20:00Z",
+    "order": 5
+  },
+  {
+    "Id": 6,
+    "title": "Update project documentation",
+    "description": "Revise technical specifications and user guides to reflect recent feature updates.",
+    "completed": false,
+    "category": "Work",
+    "priority": "Low",
+    "dueDate": "2024-01-18T17:00:00Z",
+    "createdAt": "2024-01-10T14:10:00Z",
+    "order": 6
+  },
+  {
+    "Id": 7,
+    "title": "Plan weekend hiking trip",
+    "description": "Research trails, check weather forecast, and pack necessary gear for mountain hiking adventure.",
+    "completed": false,
+    "category": "Personal",
+    "priority": "Low",
+    "dueDate": "2024-01-19T08:00:00Z",
+    "createdAt": "2024-01-11T19:30:00Z",
+    "order": 7
+  },
+  {
+    "Id": 8,
+    "title": "Submit expense reports",
+    "description": "Compile and submit all business expense receipts from December travel and client meetings.",
+    "completed": true,
+    "category": "Urgent",
+    "priority": "High",
+    "dueDate": "2024-01-11T17:00:00Z",
+    "createdAt": "2024-01-09T08:45:00Z",
+    "order": 8
+  }
+]
