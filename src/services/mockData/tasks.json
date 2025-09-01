@@ -3,6 +3,7 @@
     "Id": 1,
     "title": "Complete quarterly budget review",
     "description": "Analyze Q3 expenses and prepare budget adjustments for Q4. Include department breakdowns and variance analysis.",
+"status": "pending",
     "completed": false,
     "category": "Work",
     "priority": "High",

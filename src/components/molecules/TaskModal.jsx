@@ -18,7 +18,8 @@ const TaskModal = ({
     title: "",
     description: "",
     category: "Work",
-    priority: "Medium",
+priority: "Medium",
+    status: "pending",
     dueDate: ""
   })
   const [isLoading, setIsLoading] = useState(false)
@@ -30,6 +31,7 @@ const TaskModal = ({
         description: task.description || "",
         category: task.category || "Work",
         priority: task.priority || "Medium",
+status: task.status || "pending",
         dueDate: task.dueDate ? new Date(task.dueDate).toISOString().slice(0, 16) : ""
       })
     } else {
@@ -37,7 +39,8 @@ const TaskModal = ({
         title: "",
         description: "",
         category: "Work",
-        priority: "Medium",
+priority: "Medium",
+        status: "pending",
         dueDate: ""
       })
     }
@@ -156,6 +159,20 @@ const TaskModal = ({
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
+              </Select>
+</div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Status
+              </label>
+              <Select 
+                value={formData.status}
+                onChange={(e) => handleChange('status', e.target.value)}
+              >
+                <option value="pending">Pending</option>
+                <option value="in-progress">In Progress</option>
+                <option value="completed">Completed</option>
               </Select>
             </div>
           </div>

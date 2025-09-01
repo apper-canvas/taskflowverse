@@ -64,6 +64,26 @@ const TaskCard = forwardRef(({
       case "low": return "success"
       default: return "default"
     }
+}
+
+  const getStatusColor = (status) => {
+    switch (status.toLowerCase()) {
+      case "completed": return "success"
+      case "in-progress": return "warning"
+      case "pending": return "default"
+      case "on-hold": return "secondary"
+      default: return "default"
+    }
+  }
+
+  const getStatusLabel = (status) => {
+    switch (status.toLowerCase()) {
+      case "completed": return "Completed"
+      case "in-progress": return "In Progress"
+      case "pending": return "Pending"
+      case "on-hold": return "On Hold"
+      default: return "Unknown"
+    }
   }
 
   const getCategoryVariant = (category) => {
@@ -74,7 +94,6 @@ const TaskCard = forwardRef(({
       default: return "default"
     }
   }
-
   return (
 <motion.div
       ref={ref}
@@ -106,8 +125,10 @@ const TaskCard = forwardRef(({
             )}>
               {task.title}
             </h3>
-            
-            <div className="flex items-center space-x-2 ml-4">
+<div className="flex items-center space-x-2 ml-4">
+              <Badge variant={getStatusColor(task.status || (task.completed ? "completed" : "pending"))}>
+                {getStatusLabel(task.status || (task.completed ? "completed" : "pending"))}
+              </Badge>
               <Badge variant={getPriorityColor(task.priority)}>
                 {task.priority}
               </Badge>
@@ -133,7 +154,7 @@ const TaskCard = forwardRef(({
                 <div className={cn(
                   "flex items-center space-x-1 text-sm",
                   isOverdue() && !task.completed ? "text-red-500" : 
-                  isDueSoon() && !task.completed ? "text-amber-600" : 
+isDueSoon() && !task.completed ? "text-amber-600" : 
                   "text-gray-500"
                 )}>
                   <ApperIcon 

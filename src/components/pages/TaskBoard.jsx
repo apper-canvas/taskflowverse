@@ -95,8 +95,11 @@ const TaskBoard = () => {
 
   const handleSaveTask = async (taskData) => {
     try {
-      if (editingTask) {
-        const updatedTask = await taskService.update(editingTask.Id, taskData)
+if (editingTask) {
+        const updatedTask = await taskService.update(editingTask.Id, {
+          ...taskData,
+          completed: taskData.status === "completed"
+        })
         setTasks(prevTasks =>
           prevTasks.map(task =>
             task.Id === editingTask.Id ? updatedTask : task
