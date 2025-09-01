@@ -1,18 +1,19 @@
-import { motion } from "framer-motion"
-import { format, isAfter, isToday, isTomorrow } from "date-fns"
-import { toast } from "react-toastify"
-import ApperIcon from "@/components/ApperIcon"
-import Checkbox from "@/components/atoms/Checkbox"
-import Badge from "@/components/atoms/Badge"
-import { cn } from "@/utils/cn"
+import React, { forwardRef } from "react";
+import { motion } from "framer-motion";
+import { format, isAfter, isToday, isTomorrow } from "date-fns";
+import { toast } from "react-toastify";
+import { cn } from "@/utils/cn";
+import ApperIcon from "@/components/ApperIcon";
+import Checkbox from "@/components/atoms/Checkbox";
+import Badge from "@/components/atoms/Badge";
 
-const TaskCard = ({ 
+const TaskCard = forwardRef(({ 
   task, 
   onToggleComplete, 
   onEdit, 
   onDelete,
   className = "" 
-}) => {
+}, ref) => {
   const handleToggleComplete = async () => {
     try {
       await onToggleComplete(task.Id)
@@ -75,7 +76,8 @@ const TaskCard = ({
   }
 
   return (
-    <motion.div
+<motion.div
+      ref={ref}
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -173,8 +175,10 @@ const TaskCard = ({
           </div>
         </div>
       </div>
-    </motion.div>
+</motion.div>
   )
-}
+})
+
+TaskCard.displayName = "TaskCard"
 
 export default TaskCard
