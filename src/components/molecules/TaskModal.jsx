@@ -148,7 +148,7 @@ priority: "Medium",
               </Select>
             </div>
 
-            <div>
+<div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Priority
               </label>
@@ -160,21 +160,21 @@ priority: "Medium",
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
               </Select>
-</div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Status
-              </label>
-              <Select 
-                value={formData.status}
-                onChange={(e) => handleChange('status', e.target.value)}
-              >
-                <option value="pending">Pending</option>
-                <option value="in-progress">In Progress</option>
-                <option value="completed">Completed</option>
-              </Select>
             </div>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Status
+            </label>
+            <Select 
+              value={formData.status}
+              onChange={(e) => handleChange('status', e.target.value)}
+            >
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </Select>
           </div>
 
           <div>

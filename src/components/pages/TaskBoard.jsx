@@ -1,16 +1,17 @@
-import { useState, useEffect, useMemo } from "react"
-import { useParams } from "react-router-dom"
-import { motion } from "framer-motion"
-import { taskService } from "@/services/api/taskService"
-import { categoryService } from "@/services/api/categoryService"
-import Header from "@/components/organisms/Header"
-import TaskList from "@/components/organisms/TaskList"
-import TaskModal from "@/components/molecules/TaskModal"
-import Loading from "@/components/ui/Loading"
-import Error from "@/components/ui/Error"
+import React, { useEffect, useMemo, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { taskService } from "@/services/api/taskService";
+import { categoryService } from "@/services/api/categoryService";
+import Header from "@/components/organisms/Header";
+import TaskList from "@/components/organisms/TaskList";
+import TaskModal from "@/components/molecules/TaskModal";
+import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
 
 const TaskBoard = () => {
 const { categoryName } = useParams()
+  const location = useLocation()
   const filterType = location.pathname.includes('/today') ? 'today' : 
                     location.pathname.includes('/upcoming') ? 'upcoming' :
                     location.pathname.includes('/completed') ? 'completed' : null
@@ -22,12 +23,11 @@ const { categoryName } = useParams()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingTask, setEditingTask] = useState(null)
 
-  useEffect(() => {
+useEffect(() => {
     loadData()
-}, [])
+  }, [])
   
   // Get current location for filter detection
-  const location = window.location
 
   const loadData = async () => {
     try {

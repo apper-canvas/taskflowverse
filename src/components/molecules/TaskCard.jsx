@@ -57,14 +57,14 @@ const TaskCard = forwardRef(({
     return isAfter(now, due) && !task.completed
   }
 
-  const getPriorityColor = (priority) => {
+const getPriorityColor = (priority) => {
     switch (priority.toLowerCase()) {
       case "high": return "danger"
       case "medium": return "warning"
       case "low": return "success"
       default: return "default"
     }
-}
+  }
 
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
