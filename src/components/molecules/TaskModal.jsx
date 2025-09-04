@@ -15,23 +15,23 @@ const TaskModal = ({
   categories = []
 }) => {
   const [formData, setFormData] = useState({
-    title: "",
+title: "",
     description: "",
     category: "Work",
-priority: "Medium",
+    priority: "Medium",
     status: "pending",
     dueDate: ""
   })
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    if (task) {
+if (task) {
       setFormData({
         title: task.title || "",
         description: task.description || "",
         category: task.category || "Work",
         priority: task.priority || "Medium",
-status: task.status || "pending",
+        status: task.status || "pending",
         dueDate: task.dueDate ? new Date(task.dueDate).toISOString().slice(0, 16) : ""
       })
     } else {

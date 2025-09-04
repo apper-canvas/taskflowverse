@@ -15,7 +15,7 @@ const TaskCard = forwardRef(({
   className = "" 
 }, ref) => {
   const handleToggleComplete = async () => {
-    try {
+try {
       await onToggleComplete(task.Id)
       toast.success(
         task.completed ? "Task marked as incomplete" : "Task completed! 🎉",
@@ -96,107 +96,112 @@ const getPriorityColor = (priority) => {
   }
   return (
 <motion.div
-      ref={ref}
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20, scale: 0.95 }}
-      whileHover={{ scale: 1.01 }}
-      className={cn(
+    ref={ref}
+    layout
+    initial={{
+        opacity: 0,
+        y: 20
+    }}
+    animate={{
+        opacity: 1,
+        y: 0
+    }}
+    exit={{
+        opacity: 0,
+        y: -20,
+        scale: 0.95
+    }}
+    whileHover={{
+        scale: 1.01
+    }}
+    className={cn(
         "bg-white rounded-xl p-5 task-shadow hover:task-shadow-hover transition-all duration-200 group",
         task.completed && "opacity-75",
         isOverdue() && "ring-2 ring-red-200",
         className
-      )}
-    >
-      <div className="flex items-start space-x-4">
+    )}>
+    <div className="flex items-start space-x-4">
         <div className="pt-0.5">
-          <Checkbox
-            checked={task.completed}
-            onChange={handleToggleComplete}
-          />
+            <Checkbox checked={task.completed} onChange={handleToggleComplete} />
         </div>
-        
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between mb-3">
-            <h3 className={cn(
-              "text-base font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-200",
-              task.completed && "line-through text-gray-500"
-            )}>
-              {task.title}
-            </h3>
-<div className="flex items-center space-x-2 ml-4">
-              <Badge variant={getStatusColor(task.status || (task.completed ? "completed" : "pending"))}>
-                {getStatusLabel(task.status || (task.completed ? "completed" : "pending"))}
-              </Badge>
-              <Badge variant={getPriorityColor(task.priority)}>
-                {task.priority}
-              </Badge>
-            </div>
-          </div>
-          
-          {task.description && (
-            <p className={cn(
-              "text-sm text-gray-600 mb-3 leading-relaxed",
-              task.completed && "line-through text-gray-400"
-            )}>
-              {task.description}
-            </p>
-          )}
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Badge variant={getCategoryVariant(task.category)}>
-                {task.category}
-              </Badge>
-              
-              {task.dueDate && (
-                <div className={cn(
-                  "flex items-center space-x-1 text-sm",
-                  isOverdue() && !task.completed ? "text-red-500" : 
-isDueSoon() && !task.completed ? "text-amber-600" : 
-                  "text-gray-500"
-                )}>
-                  <ApperIcon 
-                    name="Calendar" 
-                    size={14}
+            <div className="flex items-start justify-between mb-3">
+                <h3
                     className={cn(
-                      isOverdue() && !task.completed && "animate-pulse-gentle"
-                    )}
-                  />
-                  <span>{formatDueDate(task.dueDate)}</span>
-                  {isOverdue() && !task.completed && (
-                    <Badge variant="danger" className="ml-1">
-                      Overdue
+                        "text-base font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-200",
+                        task.completed && "line-through text-gray-500"
+                    )}>
+                    {task.title}
+                </h3>
+                <div className="flex items-center space-x-2 ml-4">
+                    <Badge
+                        variant={getStatusColor(task.status || (task.completed ? "completed" : "pending"))}>
+                        {getStatusLabel(task.status || (task.completed ? "completed" : "pending"))}
                     </Badge>
-                  )}
+                    <Badge variant={getPriorityColor(task.priority)}>
+                        {task.priority}
+                    </Badge>
                 </div>
-              )}
             </div>
-            
-            <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => onEdit(task)}
-                className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 rounded-lg transition-colors duration-200"
-              >
-                <ApperIcon name="Edit3" size={14} />
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={handleDelete}
-                className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors duration-200"
-              >
-                <ApperIcon name="Trash2" size={14} />
-              </motion.button>
+            {task.description && <p
+                className={cn(
+                    "text-sm text-gray-600 mb-3 leading-relaxed",
+                    task.completed && "line-through text-gray-400"
+                )}>
+                {task.description}
+            </p>}
+            <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                    {task.description})
+                              
+                              <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                            <Badge variant={getCategoryVariant(task.category)}>
+                                {task.category}
+                            </Badge>
+                            {task.dueDate && <div
+                                className={cn(
+                                    "flex items-center space-x-1 text-sm",
+                                    isOverdue() && !task.completed ? "text-red-500" : isDueSoon() && !task.completed ? "text-amber-600" : "text-gray-500"
+                                )}>
+                                <ApperIcon
+                                    name="Calendar"
+                                    size={14}
+                                    className={cn(isOverdue() && !task.completed && "animate-pulse-gentle")} />
+                                <span>{formatDueDate(task.dueDate)}</span>
+                                {isOverdue() && !task.completed && <Badge variant="danger" className="ml-1">Overdue
+                                                        </Badge>}
+                            </div>}
+                        </div>
+                        <div
+                            className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            <motion.button
+                                whileHover={{
+                                    scale: 1.1
+                                }}
+                                whileTap={{
+                                    scale: 0.9
+                                }}
+                                onClick={() => onEdit(task)}
+                                className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 rounded-lg transition-colors duration-200">
+                                <ApperIcon name="Edit3" size={14} />
+                            </motion.button>
+                            <motion.button
+                                whileHover={{
+                                    scale: 1.1
+                                }}
+                                whileTap={{
+                                    scale: 0.9
+                                }}
+                                onClick={handleDelete}
+                                className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors duration-200">
+                                <ApperIcon name="Trash2" size={14} />
+                            </motion.button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-</motion.div>
+        </div></div></motion.div>
   )
 })
 
