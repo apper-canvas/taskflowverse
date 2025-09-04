@@ -10,7 +10,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<TaskBoard />} />
-            <Route path="category/:categoryName" element={<TaskBoard />} />
+<Route path="category/:categoryName" element={<TaskBoard />} />
+            <Route path="today" element={<TaskBoard filterType="today" />} />
+            <Route path="upcoming" element={<TaskBoard filterType="upcoming" />} />
+            <Route path="completed" element={<TaskBoard filterType="completed" />} />
           </Route>
         </Routes>
       </Router>

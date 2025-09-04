@@ -10,7 +10,10 @@ import Loading from "@/components/ui/Loading"
 import Error from "@/components/ui/Error"
 
 const TaskBoard = () => {
-  const { categoryName } = useParams()
+const { categoryName } = useParams()
+  const filterType = location.pathname.includes('/today') ? 'today' : 
+                    location.pathname.includes('/upcoming') ? 'upcoming' :
+                    location.pathname.includes('/completed') ? 'completed' : null
   const [tasks, setTasks] = useState([])
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
@@ -21,7 +24,10 @@ const TaskBoard = () => {
 
   useEffect(() => {
     loadData()
-  }, [])
+}, [])
+  
+  // Get current location for filter detection
+  const location = window.location
 
   const loadData = async () => {
     try {
@@ -41,13 +47,30 @@ const TaskBoard = () => {
   }
 
   const filteredTasks = useMemo(() => {
-    let filtered = [...tasks]
+let filtered = [...tasks]
 
     // Filter by category from URL
     if (categoryName) {
       filtered = filtered.filter(task => 
         task.category.toLowerCase() === categoryName.toLowerCase()
       )
+    }
+
+    // Filter by temporal/status type
+    if (filterType) {
+      const { getTasksForToday, getUpcomingTasks, getCompletedTasks } = taskService
+      
+      switch (filterType) {
+        case 'today':
+          filtered = getTasksForToday(filtered)
+          break
+        case 'upcoming':
+          filtered = getUpcomingTasks(filtered)
+          break
+        case 'completed':
+          filtered = getCompletedTasks(filtered)
+          break
+      }
     }
 
     // Filter by search query
@@ -61,7 +84,7 @@ const TaskBoard = () => {
     }
 
     return filtered
-  }, [tasks, categoryName, searchQuery])
+  }, [tasks, categoryName, filterType, searchQuery])
 
   const taskStats = useMemo(() => {
     const total = tasks.length
@@ -184,14 +207,17 @@ if (editingTask) {
       />
 
       <div className="flex-1 p-6">
-        {categoryName && (
+{(categoryName || filterType) && (
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             className="mb-6"
           >
             <h2 className="text-xl font-bold text-gray-900 capitalize">
-              {categoryName} Tasks
+              {categoryName ? `${categoryName} Tasks` : 
+               filterType === 'today' ? 'Today\'s Tasks' :
+               filterType === 'upcoming' ? 'Upcoming Tasks' :
+               filterType === 'completed' ? 'Completed Tasks' : 'Tasks'}
             </h2>
             <p className="text-gray-600 text-sm mt-1">
               {filteredTasks.length} task{filteredTasks.length !== 1 ? "s" : ""} found
@@ -205,8 +231,15 @@ if (editingTask) {
           onEditTask={handleEditTask}
           onDeleteTask={handleDeleteTask}
           onAddTask={handleAddTask}
-          emptyTitle={searchQuery ? "No matching tasks found" : categoryName ? `No ${categoryName.toLowerCase()} tasks` : "No tasks yet"}
-          emptyDescription={searchQuery ? "Try adjusting your search terms" : "Create your first task to get started"}
+emptyTitle={searchQuery ? "No matching tasks found" : 
+                     categoryName ? `No ${categoryName.toLowerCase()} tasks` :
+                     filterType === 'today' ? "No tasks for today" :
+                     filterType === 'upcoming' ? "No upcoming tasks" :
+                     filterType === 'completed' ? "No completed tasks" :
+                     "No tasks yet"}
+          emptyDescription={searchQuery ? "Try adjusting your search terms" : 
+                           filterType ? "Tasks will appear here when available" :
+                           "Create your first task to get started"}
         />
       </div>
 
