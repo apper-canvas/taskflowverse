@@ -15,7 +15,7 @@ const Sidebar = ({
   const navigate = useNavigate()
   const location = useLocation()
 
-  const navigationItems = [
+const navigationItems = [
     { 
       name: "All Tasks", 
       icon: "Grid3X3", 
@@ -39,6 +39,11 @@ const Sidebar = ({
       icon: "CheckSquare", 
       path: "/completed", 
       count: taskStats.completed || 0 
+    },
+    { 
+      name: "Projects", 
+      icon: "FolderOpen", 
+      path: "/projects" 
     }
   ]
 
