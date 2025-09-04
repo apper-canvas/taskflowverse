@@ -2,7 +2,7 @@ import { forwardRef } from "react"
 import { cn } from "@/utils/cn"
 import ApperIcon from "@/components/ApperIcon"
 
-const Select = forwardRef(({ className, children, ...props }, ref) => {
+const Select = forwardRef(({ className, options = [], children, ...props }, ref) => {
   return (
     <div className="relative">
       <select
@@ -14,6 +14,20 @@ const Select = forwardRef(({ className, children, ...props }, ref) => {
         {...props}
       >
         {children}
+        {options.map((option, index) => {
+          if (typeof option === 'string') {
+            return (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            );
+          }
+          return (
+            <option key={index} value={option.value}>
+              {option.label}
+            </option>
+          );
+        })}
       </select>
       <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
         <ApperIcon name="ChevronDown" size={16} className="text-gray-500" />
